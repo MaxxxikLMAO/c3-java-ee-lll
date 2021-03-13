@@ -1,16 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import {User} from '../Models/user';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {Router} from '@angular/router';
-import {Game} from '../Models/game-params';
-import {User} from '../Models/user';
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-
-export class UsersComponent implements OnInit {
+export class RegisterComponent implements OnInit {
 
   username = '';
   password = '';
@@ -20,10 +18,9 @@ export class UsersComponent implements OnInit {
 
   }
   clickedButton() {
-    this.router.navigate(['/login']);
     this.http.post('api/user', {password: this.password, username: this.username, }).subscribe(
       (data: any) => {
-        this.router.navigate(['/login']);
+        this.router.navigate(['/register']);
       }, (error) => {
         console.log(error);
       }

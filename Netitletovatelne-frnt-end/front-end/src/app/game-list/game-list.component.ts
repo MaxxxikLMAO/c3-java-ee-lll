@@ -11,7 +11,7 @@ import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 export class GameListComponent implements OnInit {
 
   title = 'MyGamerApi';
-  // url = 'http://127.0.0.1:8080/TotallyMyAppXd/api/games';
+  url = 'http://127.0.0.1:4200/TotallyMyAppXd/api/games';
   games: Game[] = [];
   id = '';
   name = '';
@@ -29,7 +29,7 @@ export class GameListComponent implements OnInit {
       price: this.price,
       studio: this.studio
     };
-    this.http.post('api/games', body, {observe: 'response'}).subscribe(
+    this.http.post(this.url, body, {observe: 'response'}).subscribe(
       (data) => {
         console.log(data);
         this.ngOnInit();
@@ -45,7 +45,7 @@ export class GameListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.http.get('api/games').subscribe(
+    this.http.get(this.url).subscribe(
       (data: Game[]) => {
         this.games = data;
       },

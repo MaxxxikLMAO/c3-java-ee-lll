@@ -14,7 +14,7 @@ public class GameResource {
     private GameManager manager;
     @GET
     public Response getAll() {
-        return Response.ok(manager.getGameList()).build();
+        return Response.ok(manager.getGames()).build();
     }
     @GET
     @Path("{id}")
