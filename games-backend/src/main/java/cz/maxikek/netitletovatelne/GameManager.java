@@ -7,47 +7,48 @@ import java.util.ArrayList;
     @ApplicationScoped
     public class GameManager {
 
-        private ArrayList<GameDetail> gameDetailList = new ArrayList<>();
-        public ArrayList<GameDetail> getGameList(){
-            return gameDetailList;
+        int IDnum = 0;
+        private ArrayList<Game> games = new ArrayList<>();
+        public ArrayList<Game> getGames(){
+            return games;
         }
-        public boolean create(GameDetail gameDetail) {
+        public boolean create(Game game) {
+            if(game.getRating() < 0 || game.getRating() > 100)
+                return false;
 
-            int newId = (int) (Math.random()*(100 +1));
+            this.IDnum++;
+            int newId = this.IDnum;
 
-            if (gameCheck(newId)){
-                gameDetail.setId(newId);
-                gameDetailList.add(gameDetail);
-            }
+            game.setId(newId);
+            games.add(game);
+
             return true;
         }
-
-        public GameDetail getGame (int id){
-            return  gameDetailList.stream()
-                    .filter(gameDetailStream -> id == gameDetailStream.getId())
+        public Game getGame (int id){
+            return  games.stream()
+                    .filter(gameStream -> id == gameStream.getId())
                     .findAny()
                     .orElse(null);
         }
 
-        public boolean removeGame(int id){
-            return  gameDetailList.remove(getGame(id));
-        }
-
         public boolean gameCheck(int id) {
-            for (int i = 0; i < gameDetailList.size(); i++){
-                if (id != gameDetailList.get(i).id) {
+            for (int i = 0; i < games.size(); i++){
+                if (id != games.get(i).id) {
                     return false;
                 }
             } return true;
         }
 
-        public boolean editGame(int id, GameDetail gameDetail){
+        public boolean editGame(int id, Game game){
             if(gameCheck(id)){
-                gameDetailList.add(gameDetail);
+                games.add(game);
                 return true;
             } else {
                 return false;
             }
+        }
+        public boolean removeGame(int id){
+            return  games.remove(getGame(id));
         }
 
     }

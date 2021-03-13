@@ -11,18 +11,16 @@ import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 export class GameListComponent implements OnInit {
 
   title = 'MyGamerApi';
-
+  // url = 'http://127.0.0.1:8080/TotallyMyAppXd/api/games';
   games: Game[] = [];
   id = '';
   name = '';
   price = '';
   studio = '';
 
-
   constructor(private http: HttpClient, private router: Router) {
-    this.ngOnInit();
-  }
 
+  }
 
   addGame(): void {
     const body = {
@@ -41,8 +39,9 @@ export class GameListComponent implements OnInit {
       }
     );
   }
+
   checkGame(id: number): void {
-    this.router.navigateByUrl('api/detail/' + id);
+    this.router.navigateByUrl('detail/' + id);
   }
 
   ngOnInit(): void {
