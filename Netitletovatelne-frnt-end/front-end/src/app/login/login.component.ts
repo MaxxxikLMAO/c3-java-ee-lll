@@ -20,8 +20,8 @@ export class LoginComponent implements OnInit {
 
   clickedButton() {
     if (this.password === this.password) {
-      this.http.post(this.url, new HttpParams().append('username', this.username).append('password', this.password),
-        {headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded'), responseType: 'text'}).subscribe(
+      this.http.post(this.url, {username: this.username, password: this.password},
+        {responseType: 'text'}).subscribe(
         (data: any) => {
           this.router.navigate(['/games']);
         }, (error) => {

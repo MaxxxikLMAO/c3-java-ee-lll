@@ -19,8 +19,7 @@ export class RegisterComponent implements OnInit {
 
   }
   clickedButton() {
-    this.http.post(this.url, new HttpParams().append('username', this.username).append('password', this.password),
-      {headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')}).subscribe(
+    this.http.post(this.url, {username: this.username, password: this.password}, {responseType: 'text'}).subscribe(
       (data: any) => {
         this.router.navigate(['/login']);
       }, (error) => {

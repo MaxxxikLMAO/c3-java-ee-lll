@@ -27,12 +27,9 @@ public class UsersResource {
 
     @POST
     @Path("register")
-    public Response createUser(
-            @FormParam("username") String username,
-            @FormParam("password") String password
-    ) {
-        User user = new User(username, password);
-        if(userExistsByUsername(username)) {
+    public Response createUser(User user) {
+
+        if(userExistsByUsername(user.username)) {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
         names.add(user);
@@ -41,13 +38,13 @@ public class UsersResource {
 
     @POST
     @Path("login")
-    public Response loginUser(@FormParam("username") String username, @FormParam("password") String password) {
+    public Response loginUser(User user) {
         for(int x = 0; x < names.size(); x++) {
-            User user = names.get(x);
-            System.out.println(user.username);
-            System.out.println(user.password);
-            if (user.username.equals(username) && user.password.equals(password)) {
-                manager.user = user;
+            User user2 = names.get(x);
+            System.out.println(user2.username);
+            System.out.println(user2.password);
+            if (user2.username.equals(user.username) && user2.password.equals(user.password)) {
+                manager.user = user2;
                 return Response.ok("User is logged").build();
             }
 
