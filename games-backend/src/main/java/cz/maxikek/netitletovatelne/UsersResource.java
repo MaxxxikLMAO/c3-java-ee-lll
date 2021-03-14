@@ -16,6 +16,15 @@ public class UsersResource {
 
     public static List<User> names = new ArrayList<User>();
 
+    public static boolean userExistsByUsername(String username) {
+        for(int i = 0; i < names.size(); i++) {
+            if(username.equals(names.get(i).getUsername())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @POST
     @Path("register")
     public Response createUser(
@@ -23,11 +32,11 @@ public class UsersResource {
             @FormParam("password") String password
     ) {
         User user = new User(username, password);
-        if(user != null) {
-            return Response.ok("Toto jmeno je jiz zaregistrovano. ").build();
+        if(userExistsByUsername(username)) {
+            return Response.status(Response.Status.BAD_REQUEST).build();
         }
         names.add(user);
-        return Response.ok("Jmeno je v poradku. " + user).build();
+        return Response.ok(user).build();
     }
 
     @POST
@@ -35,7 +44,9 @@ public class UsersResource {
     public Response loginUser(@FormParam("username") String username, @FormParam("password") String password) {
         for(int x = 0; x < names.size(); x++) {
             User user = names.get(x);
-            if (user.username.equals(username) & user.password.equals(password)) {
+            System.out.println(user.username);
+            System.out.println(user.password);
+            if (user.username.equals(username) && user.password.equals(password)) {
                 manager.user = user;
                 return Response.ok("User is logged").build();
             }

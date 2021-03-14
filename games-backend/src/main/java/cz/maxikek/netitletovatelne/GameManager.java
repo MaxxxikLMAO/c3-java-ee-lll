@@ -1,6 +1,5 @@
 package cz.maxikek.netitletovatelne;
 
-
 import javax.enterprise.context.ApplicationScoped;
 import java.util.ArrayList;
 
@@ -8,13 +7,11 @@ import java.util.ArrayList;
     public class GameManager {
 
         int IDnum = 0;
-        private ArrayList<Game> games = new ArrayList<>();
-        public ArrayList<Game> getGames(){
+        private ArrayList<GameDetail> games = new ArrayList<>();
+        public ArrayList<GameDetail> getGames(){
             return games;
         }
-        public boolean create(Game game) {
-            if(game.getRating() < 0 || game.getRating() > 100)
-                return false;
+        public boolean create(GameDetail game) {
 
             this.IDnum++;
             int newId = this.IDnum;
@@ -24,7 +21,7 @@ import java.util.ArrayList;
 
             return true;
         }
-        public Game getGame (int id){
+        public GameDetail getGame (int id){
             return  games.stream()
                     .filter(gameStream -> id == gameStream.getId())
                     .findAny()
@@ -39,7 +36,7 @@ import java.util.ArrayList;
             } return true;
         }
 
-        public boolean editGame(int id, Game game){
+        public boolean editGame(int id, GameDetail game){
             if(gameCheck(id)){
                 games.add(game);
                 return true;

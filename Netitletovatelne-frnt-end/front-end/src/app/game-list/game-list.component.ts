@@ -11,7 +11,7 @@ import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 export class GameListComponent implements OnInit {
 
   title = 'MyGamerApi';
-  url = 'http://127.0.0.1:4200/TotallyMyAppXd/api/games';
+  url = 'http://localhost:4200/TotallyMyAppXd/api/games';
   games: Game[] = [];
   id = '';
   name = '';

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../Models/user';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Router} from '@angular/router';
 
 @Component({
@@ -13,29 +13,24 @@ export class RegisterComponent implements OnInit {
   username = '';
   password = '';
   users: User[] = [];
+  url = 'http://localhost:4200/TotallyMyAppXd/api/user/register';
 
   constructor(private http: HttpClient, private router: Router){
 
   }
   clickedButton() {
-    this.http.post('api/user', {password: this.password, username: this.username, }).subscribe(
+    this.http.post(this.url, new HttpParams().append('username', this.username).append('password', this.password),
+      {headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')}).subscribe(
       (data: any) => {
-        this.router.navigate(['/register']);
+        this.router.navigate(['/login']);
       }, (error) => {
-        console.log(error);
+        console.error(error);
       }
     );
   }
 
   ngOnInit() {
-    this.http.get('api/user').subscribe(
-      (data: User[]) => {
-        this.users = data;
-      },
-      (error: HttpErrorResponse) => {
-        console.log(error);
-      }
-    );
+
   }
 
 }

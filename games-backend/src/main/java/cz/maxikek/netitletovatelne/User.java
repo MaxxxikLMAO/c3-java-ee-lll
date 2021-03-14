@@ -1,7 +1,7 @@
 package cz.maxikek.netitletovatelne;
 import javax.enterprise.context.SessionScoped;
 
-@SessionScoped
+
 public class User {
 
     public String username;

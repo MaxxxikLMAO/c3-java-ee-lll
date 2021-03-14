@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="games-backend:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>games-backend</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="TotallyMyAppXd.war">
+      <element id="artifact" artifact-name="games-backend:war exploded" />
+    </root>
+  </artifact>
+</component>

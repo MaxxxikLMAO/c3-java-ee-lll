@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {Component, OnInit} from '@angular/core';
+import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {User} from '../Models/user';
 
@@ -10,33 +10,29 @@ import {User} from '../Models/user';
 })
 export class LoginComponent implements OnInit {
 
-  email = '';
+  username = '';
   password = '';
   users: User[] = [];
-  constructor(private http: HttpClient, private router: Router){
+  url = 'http://localhost:4200/TotallyMyAppXd/api/user/login';
+
+  constructor(private http: HttpClient, private router: Router) {
   }
 
   clickedButton() {
     if (this.password === this.password) {
-      this.http.post('/api/games', {email: this.email, password: this.password}).subscribe(
+      this.http.post(this.url, new HttpParams().append('username', this.username).append('password', this.password),
+        {headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded'), responseType: 'text'}).subscribe(
         (data: any) => {
           this.router.navigate(['/games']);
         }, (error) => {
-
+          console.error(error);
         }
       );
     }
   }
 
   ngOnInit() {
-    this.http.get('/api/games').subscribe(
-      (data: User[]) => {
-        this.users = data;
-      },
-      (error: HttpErrorResponse) => {
-        console.log(error);
-      }
-    );
+
   }
 
 }
