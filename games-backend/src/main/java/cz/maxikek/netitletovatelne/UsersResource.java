@@ -45,7 +45,7 @@ public class UsersResource {
             System.out.println(user2.password);
             if (user2.username.equals(user.username) && user2.password.equals(user.password)) {
                 manager.user = user2;
-                return Response.ok("User is logged").build();
+                return Response.ok(user2).build();
             }
 
         }
