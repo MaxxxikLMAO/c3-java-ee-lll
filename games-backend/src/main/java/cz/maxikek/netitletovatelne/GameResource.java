@@ -19,14 +19,13 @@ public class GameResource {
     @GET
     @Path("{id}")
     public Response getGame(@PathParam("id") int id) {
-        return  Response.ok(manager.getGame(id)).build();
+        return Response.ok(manager.getGame(id)).build();
     }
 
     @POST
     public Response createGame(GameDetail gameDetail){
         if(!manager.create(gameDetail))
             return Response.status(400).build();
-
         return Response.ok(gameDetail).build();
     }
 

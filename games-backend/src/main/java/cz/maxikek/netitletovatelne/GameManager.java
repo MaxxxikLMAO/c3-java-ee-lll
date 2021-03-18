@@ -44,6 +44,7 @@ import java.util.ArrayList;
                 return false;
             }
         }
+
         public boolean removeGame(int id){
             return  games.remove(getGame(id));
         }
