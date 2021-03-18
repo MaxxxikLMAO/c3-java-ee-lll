@@ -21,13 +21,13 @@
 </nav>
 
 <h1>Your game details: </h1>
+<div id="inputickyuwuadalsiveci">
+<input class="form-control" id="Id" name="Id" type="text" [(ngModel)]="id" placeholder="id">
+<input class="form-control" id="Name" name="Name" type="text" [(ngModel)]="name" placeholder="Name">
+<input class="form-control" id="Price" name="Price" type="text" [(ngModel)]="price" placeholder="Price">
+<input class="form-control" id="Studio" name="Studio" type="text" [(ngModel)]="studio" placeholder="Studio">
 
-<input id="Id" name="Id" type="text" [(ngModel)]="id" placeholder="id">
-<input id="Name" name="Name" type="text" [(ngModel)]="name" placeholder="Name">
-<input id="Price" name="Price" type="text" [(ngModel)]="price" placeholder="Price">
-<input id="Studio" name="Studio" type="text" [(ngModel)]="studio" placeholder="Studio">
-
-<button (click)="addGame()">Add</button>
+<button class="btn-primary btn" (click)="addGame()">Add</button>
 
 <table>
 
@@ -46,8 +46,11 @@
     <td>{{gameDetail.price}}</td>
     <td>{{gameDetail.studio}}</td>
 
-    <td><button (click)="checkGame(gameDetail.id)">Detail</button></td>
+    <td><button class="btn-primary btn" (click)="checkGame(gameDetail.id)">Detail</button></td>
+    <td><button class="btn-primary btn" (click)="deleteGame(gameDetail.id)">Delete</button></td>
+    <td><button class="btn-primary btn" (click)="editGame(gameDetail.id)">Edit</button></td>
 
   </tr>
 
 </table>
+</div>

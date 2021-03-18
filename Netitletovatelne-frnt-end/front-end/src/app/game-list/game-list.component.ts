@@ -11,7 +11,7 @@ import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 export class GameListComponent implements OnInit {
 
   title = 'MyGamerApi';
-  url = 'http://localhost:4200/TotallyMyAppXd/api/games';
+  url = 'http://localhost:4200/TotallyMyAppXd/api/games/';
   games: Game[] = [];
   id = '';
   name = '';
@@ -42,6 +42,33 @@ export class GameListComponent implements OnInit {
 
   checkGame(id: number): void {
     this.router.navigateByUrl('detail/' + id);
+  }
+
+  updateList(): void {
+    this.http.get(this.url).subscribe(
+      (data: Game[]) => {
+        this.games = data;
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error);
+      }
+    );
+  }
+
+  deleteGame(id: number): void {
+    this.http.delete(this.url + id, {responseType: 'text'}).subscribe(
+      (data) => {
+        console.log(data);
+        this.updateList();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  editGame() {
+
   }
 
   ngOnInit(): void {
