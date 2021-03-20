@@ -67,10 +67,6 @@ export class GameListComponent implements OnInit {
     );
   }
 
-  editGame() {
-
-  }
-
   ngOnInit(): void {
     this.http.get(this.url).subscribe(
       (data: Game[]) => {

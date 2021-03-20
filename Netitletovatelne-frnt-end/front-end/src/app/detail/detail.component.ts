@@ -15,6 +15,16 @@ export class DetailComponent implements OnInit {
 
   constructor(private http: HttpClient, private router: Router, private activatedRoute: ActivatedRoute) { }
 
+  editGame() {
+    this.http.put(this.url + this.gameDetail.id, this.gameDetail).subscribe(
+      (data: Game) => {
+        this.gameDetail = data;
+      }, (error) => {
+        console.log(error);
+      }
+    );
+  }
+
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(p => {
       const id = p.get('id');

@@ -22,10 +22,10 @@
 <p>vítej v dýtejlu brášqo</p>
 
 <div *ngIf="gameDetail" class="gameDetail">
-
-  <p>{{gameDetail.id}}</p>
-  <p>{{gameDetail.name}}</p>
-  <p>{{gameDetail.price}}</p>
-  <p>{{gameDetail.studio}}</p>
-
+  <form>
+  <input [(ngModel)]="gameDetail.name" placeholder="name" name="name">
+  <input [(ngModel)]="gameDetail.price" placeholder="price" name="price">
+  <input [(ngModel)]="gameDetail.studio" placeholder="studio" name="studio">
+  <button (click)="editGame()" >EDIT.</button>
+  </form>
 </div>
