@@ -32,8 +32,8 @@ public class GameResource {
     @PUT
     @Path("{id}")
     public Response editGame(@PathParam("id") int id, GameDetail gameDetail) {
-        if(!manager.editGame(id, gameDetail)) {
-            return Response.ok().build();
+        if(manager.editGame(id, gameDetail)) {
+            return Response.ok(gameDetail).build();
         }
         else return Response.status(Response.Status.BAD_REQUEST).build();
     }

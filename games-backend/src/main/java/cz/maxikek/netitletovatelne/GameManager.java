@@ -30,20 +30,31 @@ import java.util.ArrayList;
 
         public boolean gameCheck(int id) {
             for (int i = 0; i < games.size(); i++){
-                if (id != games.get(i).id) {
+                if (id == games.get(i).id) {
                     return false;
                 }
             } return true;
         }
 
-        public boolean editGame(int id, GameDetail game){
+        public boolean editGame(int id, GameDetail gameData) {
+            for(GameDetail singleGame: games) {
+                if(singleGame.id == id) {
+                    singleGame.name = gameData.name;
+                    singleGame.price = gameData.price;
+                    singleGame.studio = gameData.studio;
+                    return true;
+                }
+            } return false;
+        }
+        
+       /* public boolean editGame(int id, GameDetail game){
             if(gameCheck(id)){
                 games.add(game);
                 return true;
             } else {
                 return false;
             }
-        }
+        } */
 
         public boolean removeGame(int id){
             return  games.remove(getGame(id));
