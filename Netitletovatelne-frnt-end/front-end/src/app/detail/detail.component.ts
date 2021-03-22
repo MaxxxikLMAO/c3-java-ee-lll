@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Game} from '../Models/game-params';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
+import {CurrentUserService} from "../current-user.service";
 
 @Component({
   selector: 'app-detail',
@@ -13,7 +14,12 @@ export class DetailComponent implements OnInit {
   gameDetail: Game;
   url = 'http://localhost:4200/TotallyMyAppXd/api/games/';
 
-  constructor(private http: HttpClient, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private http: HttpClient, private router: Router,
+              private activatedRoute: ActivatedRoute, private currentUser: CurrentUserService) {
+    if (currentUser.user == null) {
+      router.navigate(['/login']);
+    }
+  }
 
   editGame() {
     this.http.put(this.url + this.gameDetail.id, this.gameDetail).subscribe(

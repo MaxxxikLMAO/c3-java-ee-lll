@@ -4,6 +4,6 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 
 @SessionScoped
-public class UsersManager implements Serializable {
+public class CurrentUserManager implements Serializable {
     User user = null;
 }

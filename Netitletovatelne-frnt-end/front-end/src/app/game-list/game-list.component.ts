@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Game} from '../Models/game-params';
 import {Router} from '@angular/router';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {CurrentUserService} from "../current-user.service";
 
 @Component({
   selector: 'app-game-list',
@@ -18,8 +19,10 @@ export class GameListComponent implements OnInit {
   price = '';
   studio = '';
 
-  constructor(private http: HttpClient, private router: Router) {
-
+  constructor(private http: HttpClient, private router: Router, private currentUser: CurrentUserService) {
+    if (currentUser.user == null) {
+      router.navigate(['/login']);
+    }
   }
 
   addGame(): void {
