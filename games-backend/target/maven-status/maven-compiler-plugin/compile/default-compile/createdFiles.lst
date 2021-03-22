@@ -1,7 +1,7 @@
 cz\maxikek\netitletovatelne\ApiConf.class
 cz\maxikek\netitletovatelne\GameDetail.class
 cz\maxikek\netitletovatelne\UsersResource.class
-cz\maxikek\netitletovatelne\UsersManager.class
+cz\maxikek\netitletovatelne\CurrentUserManager.class
 cz\maxikek\netitletovatelne\User.class
 cz\maxikek\netitletovatelne\GameManager.class
 cz\maxikek\netitletovatelne\GameResource.class

@@ -12,18 +12,29 @@ public class GameResource {
 
     @Inject
     private GameManager manager;
+    @Inject
+    private CurrentUserManager currentUserManager;
     @GET
     public Response getAll() {
+        if(currentUserManager.user == null) {
+            return Response.status(Response.Status.UNAUTHORIZED).build();
+        }
         return Response.ok(manager.getGames()).build();
     }
     @GET
     @Path("{id}")
     public Response getGame(@PathParam("id") int id) {
+        if(currentUserManager.user == null) {
+            return Response.status(Response.Status.UNAUTHORIZED).build();
+        }
         return Response.ok(manager.getGame(id)).build();
     }
 
     @POST
     public Response createGame(GameDetail gameDetail){
+        if(currentUserManager.user == null) {
+            return Response.status(Response.Status.UNAUTHORIZED).build();
+        }
         if(!manager.create(gameDetail))
             return Response.status(400).build();
         return Response.ok(gameDetail).build();
@@ -32,6 +43,9 @@ public class GameResource {
     @PUT
     @Path("{id}")
     public Response editGame(@PathParam("id") int id, GameDetail gameDetail) {
+        if(currentUserManager.user == null) {
+            return Response.status(Response.Status.UNAUTHORIZED).build();
+        }
         if(manager.editGame(id, gameDetail)) {
             return Response.ok(gameDetail).build();
         }
@@ -41,6 +55,9 @@ public class GameResource {
     @DELETE
     @Path("{id}")
     public Response eraseGame(@PathParam("id") int id) {
+        if(currentUserManager.user == null) {
+            return Response.status(Response.Status.UNAUTHORIZED).build();
+        }
         if(manager.removeGame(id)){
             return Response.ok("Game removed").build();
         } else {
