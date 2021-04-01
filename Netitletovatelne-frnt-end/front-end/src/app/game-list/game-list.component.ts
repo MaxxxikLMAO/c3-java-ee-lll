@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Game} from '../Models/game-params';
 import {Router} from '@angular/router';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {CurrentUserService} from "../current-user.service";
+import {CurrentUserService} from '../current-user.service';
 
 @Component({
   selector: 'app-game-list',
